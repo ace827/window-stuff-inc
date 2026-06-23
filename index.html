@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Window Stuff Inc. — Custom Window Coverings & Interior Design</title>
+<meta name="description" content="Window Stuff Inc. offers all types of custom window coverings and interior design services. A subsidiary of Liberatore Decorators.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream:    #f9f6f0;
+    --warm:     #f2ede4;
+    --sand:     #e8dfd0;
+    --border:   #d8cfc0;
+    --mid:      #9a8f7e;
+    --dark:     #3a3228;
+    --ink:      #1a1510;
+    --gold:     #b8860b;
+    --gold2:    #d4a017;
+    --gold3:    #8b6400;
+    --white:    #ffffff;
+    --card:     #fdfaf5;
+    --deep:     #0e0c09;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  /* ─── SVG SPRITE ─── */
+  .icon { display: inline-block; width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+
+  /* ─── TOPBAR ─── */
+  .topbar {
+    background: var(--ink);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.78rem;
+    padding: 0.55rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.02em;
+  }
+  .topbar-left { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .topbar-left span { display: flex; align-items: center; gap: 0.35rem; }
+  .topbar-right { display: flex; gap: 1rem; align-items: center; }
+  .topbar a { color: var(--gold2); font-weight: 600; transition: color .2s; }
+  .topbar a:hover { color: var(--white); }
+  .topbar-cta {
+    background: var(--gold);
+    color: var(--white) !important;
+    padding: 0.35rem 1rem;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    transition: background .2s;
+  }
+  .topbar-cta:hover { background: var(--gold2) !important; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .nav-logo-mark {
+    width: 38px;
+    height: 38px;
+    background: var(--ink);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark svg { width: 22px; height: 22px; stroke: var(--gold2); fill: none; stroke-width: 1.8; }
+  .nav-brand { line-height: 1.2; }
+  .nav-brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+    letter-spacing: 0.02em;
+  }
+  .nav-brand-sub {
+    font-size: 0.68rem;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+    list-style: none;
+  }
+  .nav-links a {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 0.03em;
+    border-radius: 4px;
+    transition: all .2s;
+  }
+  .nav-links a:hover { color: var(--gold3); background: var(--warm); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--white) !important;
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 4px;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--gold3) !important; }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 0.4rem;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all .3s;
+  }
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--white);
+    z-index: 2000;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+  .mobile-menu-close {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--ink);
+    padding: 0.25rem;
+  }
+  .mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mobile-nav-links li { border-bottom: 1px solid var(--border); }
+  .mobile-nav-links a {
+    display: block;
+    padding: 1rem 0.25rem;
+    font-size: 1.3rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .mobile-cta-wrap { margin-top: 2rem; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    transition: background .25s, transform .15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover { background: var(--gold3); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    border: 2px solid rgba(255,255,255,0.6);
+    transition: all .25s;
+    cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=85');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .hero-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(14,12,9,0.88) 0%, rgba(14,12,9,0.6) 55%, rgba(14,12,9,0.3) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 3rem;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(184,134,11,0.18);
+    border: 1px solid rgba(212,160,23,0.4);
+    color: var(--gold2);
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 5vw, 5.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold2);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    color: var(--white);
+    align-self: center;
+  }
+  .hero-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: var(--gold2);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 0.75rem;
+  }
+  .hero-card-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+  .hero-card-item .icon { color: var(--gold2); margin-top: 2px; flex-shrink: 0; }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+  /* ─── STATS BAND ─── */
+  .stats-band {
+    background: var(--ink);
+    padding: 2.5rem 2rem;
+  }
+  .stats-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 1.25rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--gold2);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+
+  /* ─── SECTIONS SHARED ─── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1280px; margin: 0 auto; }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold3);
+    margin-bottom: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--mid);
+    line-height: 1.7;
+    max-width: 600px;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--cream); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem 1.75rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); border-color: transparent; }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--warm);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: var(--gold3);
+  }
+  .service-icon svg { width: 24px; height: 24px; }
+  .service-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .service-card p {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .service-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .service-list li {
+    font-size: 0.83rem;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .service-list li::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── PROCESS ─── */
+  .process { background: var(--white); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: calc(12.5% + 30px);
+    right: calc(12.5% + 30px);
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold));
+    opacity: 0.4;
+  }
+  .step-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+  .step-num {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--gold2);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    position: relative;
+    z-index: 1;
+    border: 3px solid var(--gold);
+  }
+  .step-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .step-card p {
+    font-size: 0.85rem;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery { background: var(--warm); padding: 5rem 2rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+  .gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+  }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-item-inner { height: 260px; overflow: hidden; }
+  .gallery-item.wide .gallery-item-inner { height: 340px; }
+
+  /* ─── WHY US ─── */
+  .why { background: var(--white); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .why-col {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .why-col-head {
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .why-col.bad .why-col-head { background: #f5f0eb; color: var(--dark); }
+  .why-col.good .why-col-head { background: var(--ink); color: var(--white); }
+  .why-col.good .why-col-head .icon { color: var(--gold2); }
+  .why-items { border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; }
+  .why-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .why-item:last-child { border-bottom: none; }
+  .why-col.bad .why-item { color: var(--mid); }
+  .why-col.bad .icon { color: #c0a080; margin-top: 2px; flex-shrink: 0; }
+  .why-col.good .why-item { color: var(--dark); }
+  .why-col.good .icon { color: var(--gold3); margin-top: 2px; flex-shrink: 0; }
+
+  /* ─── ABOUT ─── */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .about-img-wrap img { width: 100%; height: 500px; object-fit: cover; border-radius: 12px; }
+  .about-img-badge {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--ink);
+    color: var(--white);
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid var(--gold);
+  }
+  .about-img-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold2);
+    line-height: 1;
+    display: block;
+  }
+  .about-img-badge-text {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+    display: block;
+    margin-top: 0.2rem;
+  }
+  .about-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--dark);
+  }
+  .check-icon {
+    width: 22px;
+    height: 22px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--white);
+  }
+  .check-icon svg { width: 12px; height: 12px; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--ink); padding: 5rem 2rem; }
+  .testimonials .section-title { color: var(--white); }
+  .testimonials .section-label { color: var(--gold2); }
+  .testimonials .section-sub { color: rgba(255,255,255,0.55); }
+  .pullquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    color: var(--white);
+    font-style: italic;
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 850px;
+    margin: 0 auto 1.25rem;
+    text-align: center;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    position: relative;
+  }
+  .pullquote::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
+  }
+  .pullquote-attr {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--gold2);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 3.5rem;
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .review-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: background .3s;
+  }
+  .review-card:hover { background: rgba(255,255,255,0.1); }
+  .review-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 0.75rem;
+  }
+  .review-stars svg { width: 15px; height: 15px; fill: var(--gold2); stroke: none; }
+  .review-text {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .review-author {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+  }
+
+  /* ─── FAQ ─── */
+  .faq { background: var(--cream); }
+  .faq-list { max-width: 780px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 1.25rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    transition: color .2s;
+  }
+  .faq-question:hover { color: var(--gold3); }
+  .faq-chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    stroke: var(--gold3);
+    fill: none;
+    stroke-width: 2;
+    transition: transform .3s;
+  }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .35s;
+    font-size: 0.92rem;
+    color: var(--mid);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding-bottom: 1.25rem;
+  }
+
+  /* ─── SERVICE AREA ─── */
+  .area { background: var(--white); }
+  .area-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .area-card {
+    background: var(--ink);
+    border-radius: 12px;
+    padding: 2.5rem;
+    color: var(--white);
+  }
+  .area-card h3 {
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .area-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 1.75rem;
+  }
+  .area-visual {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .area-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid rgba(184,134,11,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .area-circle::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 1px dashed rgba(212,160,23,0.3);
+  }
+  .area-center-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .area-grid-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .area-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 0.65rem 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .area-item-name { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.85); }
+  .area-item-time { font-size: 0.75rem; color: var(--gold2); font-weight: 600; }
+  .area-desc h3 { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .area-desc p { font-size: 0.95rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.5rem; }
+  .area-features { display: flex; flex-direction: column; gap: 0.75rem; }
+  .area-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--dark);
+  }
+  .area-feature .icon { color: var(--gold3); margin-top: 2px; flex-shrink: 0; }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a1f14 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=40') center/cover;
+    opacity: 0.05;
+  }
+  .cta-band-inner { position: relative; z-index: 1; }
+  .cta-band h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .cta-band p { font-size: 1rem; color: rgba(255,255,255,0.65); margin-bottom: 0.5rem; }
+  .cta-band-phone {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    color: var(--gold2);
+    display: block;
+    margin: 0.75rem 0 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .cta-band-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+  /* ─── CONTACT ─── */
+  .contact { background: var(--cream); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+  .hours-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+  .hours-table td {
+    padding: 0.7rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hours-table td:first-child { color: var(--dark); font-weight: 500; }
+  .hours-table td:last-child { text-align: right; color: var(--mid); }
+  .hours-table tr:last-child td { border-bottom: none; }
+  .contact-form {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem;
+  }
+  .contact-form h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--dark);
+    margin-bottom: 0.45rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    background: var(--white);
+    transition: border-color .2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--gold3); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.55);
+    padding: 4rem 2rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+  .footer-brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .footer-tagline {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+  .footer-col h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer-links a {
+    font-size: 0.86rem;
+    color: rgba(255,255,255,0.45);
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--gold2); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-subsidiary {
+    color: var(--gold2);
+    font-size: 0.78rem;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .rl { opacity: 0; transform: translateX(-28px); transition: opacity .6s ease, transform .6s ease; }
+  .rl.in { opacity: 1; transform: none; }
+  .rr { opacity: 0; transform: translateX(28px); transition: opacity .6s ease, transform .6s ease; }
+  .rr.in { opacity: 1; transform: none; }
+  .d1 { transition-delay: .1s; }
+  .d2 { transition-delay: .2s; }
+  .d3 { transition-delay: .3s; }
+  .d4 { transition-delay: .4s; }
+
+  /* ─── DESKTOP-SPECIFIC REFINEMENTS (1100px+) ─── */
+  @media (min-width: 1100px) {
+    .hero-content { padding-top: 6rem; padding-bottom: 5rem; }
+    .stats-inner { gap: 0; }
+  }
+
+  /* ─── TABLET (768px–1100px) ─── */
+  @media (max-width: 1100px) {
+    .topbar { display: none; }
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .stat-item:nth-child(2n) { border-right: none; }
+    .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-steps::before { display: none; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item.wide { grid-column: span 1; }
+    .why-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img-wrap img { height: 320px; }
+    .reviews-grid { grid-template-columns: 1fr 1fr; }
+    .area-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  /* ─── MOBILE (max 768px) — fully optimized ─── */
+  @media (max-width: 768px) {
+    section { padding: 3.5rem 1.25rem; }
+    nav { padding: 0 1.25rem; height: 60px; }
+    .nav-brand-name { font-size: 1rem; }
+    .nav-brand-sub { display: none; }
+
+    /* Hero — stacked, full screen, single CTA */
+    .hero-content {
+      padding: 4rem 1.25rem 3rem;
+      grid-template-columns: 1fr;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
+    .hero-sub { font-size: 0.95rem; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn-outline { display: none; }
+    .hero-actions .btn-primary { width: 100%; justify-content: center; }
+    .hero-scroll { display: none; }
+
+    /* Stats — 2 col on mobile */
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .stat-number { font-size: 2rem; }
+
+    /* Services — single column */
+    .services-grid { grid-template-columns: 1fr; }
+
+    /* Process — 2 col on mobile */
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .process-steps::before { display: none; }
+    .step-num { width: 48px; height: 48px; font-size: 1.2rem; }
+
+    /* Gallery — 1 col stack */
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    .gallery-item.wide { grid-column: span 1; }
+    .gallery-item-inner { height: 220px; }
+    .gallery-item.wide .gallery-item-inner { height: 260px; }
+
+    /* Why — single col */
+    .why-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+
+    /* About — stacked */
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-img-wrap img { height: 280px; }
+
+    /* Reviews — 1 col */
+    .reviews-grid { grid-template-columns: 1fr; }
+    .pullquote { font-size: 1.2rem; padding: 1.75rem 0; }
+
+    /* Area — single col */
+    .area-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    /* Contact — single col */
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 1.5rem 1.25rem; }
+
+    /* CTA band */
+    .cta-band-phone { font-size: 2.2rem; }
+    .cta-band-actions { flex-direction: column; align-items: center; }
+
+    /* Footer */
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+
+    /* Section text */
+    .section-title { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+
+    /* Mobile sticky bottom CTA bar */
+    .mobile-cta-bar {
+      display: flex !important;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 0.75rem 1rem;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    body { padding-bottom: 72px; }
+  }
+
+  /* Hide mobile CTA bar on desktop */
+  .mobile-cta-bar { display: none; }
+
+  /* ─── UTILITY ─── */
+  .text-gold { color: var(--gold2); }
+  .mt-0 { margin-top: 0 !important; }
+</style>
+</head>
+<body>
+
+<!-- SVG SPRITE -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-blinds" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="2" rx="1"/><rect x="2" y="8" width="20" height="2" rx="1"/><rect x="2" y="13" width="20" height="2" rx="1"/><rect x="2" y="18" width="20" height="2" rx="1"/><line x1="12" y1="5" x2="12" y2="20"/></symbol>
+  <symbol id="i-drape" viewBox="0 0 24 24"><path d="M4 3 C4 3 6 8 6 12 C6 16 4 21 4 21"/><path d="M20 3 C20 3 18 8 18 12 C18 16 20 21 20 21"/><line x1="4" y1="3" x2="20" y2="3"/><path d="M6 12 C8 14 10 15 12 15 C14 15 16 14 18 12"/></symbol>
+  <symbol id="i-shade" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="3" rx="1.5"/><path d="M6 6 L6 16 Q12 20 18 16 L18 6"/></symbol>
+  <symbol id="i-shutter" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/><line x1="3" y1="8" x2="11" y2="8"/><line x1="3" y1="13" x2="11" y2="13"/><line x1="3" y1="18" x2="11" y2="18"/><line x1="13" y1="8" x2="21" y2="8"/><line x1="13" y1="13" x2="21" y2="13"/><line x1="13" y1="18" x2="21" y2="18"/></symbol>
+  <symbol id="i-measure" viewBox="0 0 24 24"><path d="M3 9l18-6-6 18L12 12z"/><line x1="3" y1="9" x2="12" y2="12"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></symbol>
+  <symbol id="i-design" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></symbol>
+</svg>
+
+<!-- TOPBAR (desktop only) -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span>
+      <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8"><polyline points="22 16.92 22 19.92 20 21.92 18 19.92 16 21.92 14 19.92 12 21.92 10 19.92 8 21.92 6 19.92 4 21.92 2 19.92 2 16.92"/></svg>
+      A Subsidiary of Liberatore Decorators
+    </span>
+    <span>
+      <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Mon – Sat: 9am – 6pm &nbsp;|&nbsp; Sun: By Appointment
+    </span>
+  </div>
+  <div class="topbar-right">
+    <span>Free In-Home Consultation</span>
+    <a href="tel:+10000000000" class="topbar-cta">Call for a Free Quote</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="3" width="20" height="2" rx="1"/>
+        <rect x="2" y="8" width="20" height="2" rx="1"/>
+        <rect x="2" y="13" width="20" height="2" rx="1"/>
+        <rect x="2" y="18" width="20" height="2" rx="1"/>
+      </svg>
+    </div>
+    <div class="nav-brand">
+      <span class="nav-brand-name">Window Stuff Inc.</span>
+      <span class="nav-brand-sub">Custom Coverings &amp; Design</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+10000000000" class="nav-cta">Free Consultation</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-header">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="3" width="20" height="2" rx="1"/>
+          <rect x="2" y="8" width="20" height="2" rx="1"/>
+          <rect x="2" y="13" width="20" height="2" rx="1"/>
+          <rect x="2" y="18" width="20" height="2" rx="1"/>
+        </svg>
+      </div>
+      <div class="nav-brand">
+        <span class="nav-brand-name">Window Stuff Inc.</span>
+      </div>
+    </div>
+    <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu">&times;</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="#services" class="mobile-menu-link">Services</a></li>
+    <li><a href="#gallery" class="mobile-menu-link">Gallery</a></li>
+    <li><a href="#process" class="mobile-menu-link">Our Process</a></li>
+    <li><a href="#about" class="mobile-menu-link">About Us</a></li>
+    <li><a href="#testimonials" class="mobile-menu-link">Reviews</a></li>
+    <li><a href="#faq" class="mobile-menu-link">FAQ</a></li>
+    <li><a href="#contact" class="mobile-menu-link">Contact</a></li>
+  </ul>
+  <div class="mobile-cta-wrap">
+    <a href="tel:+10000000000" class="btn-primary" style="width:100%;justify-content:center;background:var(--gold);color:var(--white)">
+      <svg class="icon" style="fill:none;stroke:currentColor"><use href="#i-phone"/></svg>
+      Call for Free Consultation
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge reveal">
+        <svg class="icon" style="width:14px;height:14px;fill:var(--gold2);stroke:none"><use href="#i-star"/></svg>
+        Custom Window Coverings &amp; Interior Design
+      </div>
+      <h1 class="reveal d1">
+        Transform Every<br><em>Window</em> Into a<br>Work of Art
+      </h1>
+      <p class="hero-sub reveal d2">
+        From custom blinds and shades to full interior design services — Window Stuff Inc. brings precision craftsmanship and elevated style to every space we touch. Proudly part of the Liberatore Decorators family.
+      </p>
+      <div class="hero-actions reveal d3">
+        <a href="#contact" class="btn-primary">
+          <svg class="icon" style="fill:none;stroke:currentColor"><use href="#i-arrow"/></svg>
+          Book Free Consultation
+        </a>
+        <a href="#services" class="btn-outline">
+          Explore Services
+        </a>
+      </div>
+    </div>
+    <div class="hero-card reveal d2">
+      <div class="hero-card-title">Why Choose Us</div>
+      <div class="hero-card-item">
+        <svg class="icon" style="width:16px;height:16px;fill:none;stroke:currentColor"><use href="#i-check"/></svg>
+        <span>Free in-home measurement &amp; consultation</span>
+      </div>
+      <div class="hero-card-item">
+        <svg class="icon" style="width:16px;height:16px;fill:none;stroke:currentColor"><use href="#i-check"/></svg>
+        <span>Hundreds of fabrics, materials &amp; styles</span>
+      </div>
+      <div class="hero-card-item">
+        <svg class="icon" style="width:16px;height:16px;fill:none;stroke:currentColor"><use href="#i-check"/></svg>
+        <span>Professional installation included</span>
+      </div>
+      <div class="hero-card-item">
+        <svg class="icon" style="width:16px;height:16px;fill:none;stroke:currentColor"><use href="#i-check"/></svg>
+        <span>Backed by Liberatore Decorators' legacy</span>
+      </div>
+      <div class="hero-card-item">
+        <svg class="icon" style="width:16px;height:16px;fill:none;stroke:currentColor"><use href="#i-check"/></svg>
+        <span>Residential &amp; commercial projects welcome</span>
+      </div>
+      <a href="tel:+10000000000" style="display:flex;align-items:center;gap:.5rem;color:var(--gold2);font-size:.85rem;font-weight:600;margin-top:1.25rem">
+        <svg class="icon" style="width:16px;height:16px;fill:none;stroke:currentColor"><use href="#i-phone"/></svg>
+        Call Now — It's Free
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-number" data-count="500">0</div>
+      <div class="stat-label">Projects Completed</div>
+    </div>
+    <div class="stat-item reveal d1">
+      <div class="stat-number">5.0</div>
+      <div class="stat-label">Average Star Rating</div>
+    </div>
+    <div class="stat-item reveal d2">
+      <div class="stat-number" data-count="20">0</div>
+      <div class="stat-label">Years of Expertise</div>
+    </div>
+    <div class="stat-item reveal d3">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Satisfaction Guaranteed</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-label reveal">What We Offer</div>
+    <h2 class="section-title reveal d1">Complete Window Covering<br>&amp; Design Services</h2>
+    <p class="section-sub reveal d2">Every window is different. We offer a full range of custom solutions — from classic blinds to luxurious drapery — each measured, designed, and installed to perfection.</p>
+    <div class="services-grid">
+      <!-- Card 1 -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-blinds"/></svg>
+        </div>
+        <h3>Custom Blinds</h3>
+        <p>Precision-cut blinds in wood, faux wood, aluminum, and fabric — fitted exactly to your windows for a clean, polished look.</p>
+        <ul class="service-list">
+          <li>Horizontal &amp; vertical blinds</li>
+          <li>Wood &amp; faux wood options</li>
+          <li>Motorized &amp; smart home ready</li>
+          <li>Blackout &amp; light-filtering</li>
+        </ul>
+      </div>
+      <!-- Card 2 -->
+      <div class="service-card reveal d1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shade"/></svg>
+        </div>
+        <h3>Shades &amp; Rollers</h3>
+        <p>From sheer solar shades to room-darkening cellular shades — we carry hundreds of fabric options to match any aesthetic.</p>
+        <ul class="service-list">
+          <li>Roller &amp; solar shades</li>
+          <li>Honeycomb / cellular shades</li>
+          <li>Roman &amp; woven wood shades</li>
+          <li>UV protection options</li>
+        </ul>
+      </div>
+      <!-- Card 3 -->
+      <div class="service-card reveal d2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-drape"/></svg>
+        </div>
+        <h3>Drapery &amp; Curtains</h3>
+        <p>Luxurious custom drapery crafted from premium fabrics — the perfect finishing touch for living rooms, dining areas, and bedrooms.</p>
+        <ul class="service-list">
+          <li>Custom fabric selection</li>
+          <li>Lined &amp; unlined panels</li>
+          <li>Floor-to-ceiling styles</li>
+          <li>Decorative hardware</li>
+        </ul>
+      </div>
+      <!-- Card 4 -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shutter"/></svg>
+        </div>
+        <h3>Shutters</h3>
+        <p>Timeless plantation shutters and solid panel shutters that add architectural character and lasting value to any home.</p>
+        <ul class="service-list">
+          <li>Plantation &amp; panel shutters</li>
+          <li>Interior &amp; exterior options</li>
+          <li>Custom paint &amp; stain finishes</li>
+          <li>Bay &amp; specialty window fits</li>
+        </ul>
+      </div>
+      <!-- Card 5 -->
+      <div class="service-card reveal d1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-design"/></svg>
+        </div>
+        <h3>Interior Design</h3>
+        <p>Beyond windows — our full interior design services help you create cohesive, beautiful spaces that reflect your personal style.</p>
+        <ul class="service-list">
+          <li>Full-room design consultations</li>
+          <li>Color &amp; material curation</li>
+          <li>Furniture &amp; decor sourcing</li>
+          <li>Commercial &amp; residential</li>
+        </ul>
+      </div>
+      <!-- Card 6 -->
+      <div class="service-card reveal d2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-measure"/></svg>
+        </div>
+        <h3>Measurement &amp; Install</h3>
+        <p>Every project starts with a precise in-home measurement and ends with professional installation — we handle everything for you.</p>
+        <ul class="service-list">
+          <li>Free in-home measuring</li>
+          <li>Expert installation team</li>
+          <li>Post-install adjustments</li>
+          <li>Satisfaction guaranteed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="section-title reveal d1">From First Call to<br>Finished Room</h2>
+    <p class="section-sub reveal d2">Our simple 4-step process takes the stress out of transforming your space — we do the heavy lifting so you can focus on enjoying the results.</p>
+    <div class="process-steps">
+      <div class="step-card reveal">
+        <div class="step-num">1</div>
+        <h3>Free Consultation</h3>
+        <p>We visit your home, measure every window, and help you explore styles, fabrics, and finishes that fit your vision and budget.</p>
+      </div>
+      <div class="step-card reveal d1">
+        <div class="step-num">2</div>
+        <h3>Custom Design</h3>
+        <p>Our designers create a tailored proposal with samples, swatches, and clear pricing — no surprises, no hidden fees.</p>
+      </div>
+      <div class="step-card reveal d2">
+        <div class="step-num">3</div>
+        <h3>Crafted to Order</h3>
+        <p>Your selections are custom-fabricated with precision using premium materials sourced from trusted manufacturers.</p>
+      </div>
+      <div class="step-card reveal d3">
+        <div class="step-num">4</div>
+        <h3>Expert Installation</h3>
+        <p>Our professional install team arrives on schedule, fits everything perfectly, and leaves your home clean and beautiful.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <div class="section-label reveal">Our Work</div>
+    <h2 class="section-title reveal d1">Spaces We've Transformed</h2>
+    <p class="section-sub reveal d2">Every installation tells a story. Here's a look at a few of the spaces we've had the privilege to design.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item wide reveal">
+        <div class="gallery-item-inner">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80" alt="Elegant living room with custom drapes" loading="lazy">
+        </div>
+      </div>
+      <div class="gallery-item reveal d1">
+        <div class="gallery-item-inner">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" alt="Modern bedroom with roller shades" loading="lazy">
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-item-inner">
+          <img src="https://images.unsplash.com/photo-1600210491892-03d54b5b7d3b?w=800&q=80" alt="Dining room with plantation shutters" loading="lazy">
+        </div>
+      </div>
+      <div class="gallery-item reveal d1">
+        <div class="gallery-item-inner">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80" alt="Home office with custom blinds" loading="lazy">
+        </div>
+      </div>
+      <div class="gallery-item wide reveal d2">
+        <div class="gallery-item-inner">
+          <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200&q=80" alt="Luxury master bedroom with floor-to-ceiling drapery" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <div class="section-label reveal">Why Window Stuff</div>
+    <h2 class="section-title reveal d1">The Independent Advantage</h2>
+    <p class="section-sub reveal d2">Big-box stores offer limited choices and rushed installs. We offer something better — personal expertise, custom craftsmanship, and real relationships.</p>
+    <div class="why-grid">
+      <div class="why-col bad reveal rl">
+        <div class="why-col-head">
+          <svg class="icon" style="fill:none;stroke:currentColor;width:20px;height:20px"><use href="#i-x"/></svg>
+          Big-Box &amp; Generic Stores
+        </div>
+        <div class="why-items">
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-x"/></svg>
+            Limited fabric and style selections — what's in stock is what you get
+          </div>
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-x"/></svg>
+            Sales reps with minimal design training pushing whatever's on promotion
+          </div>
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-x"/></svg>
+            Third-party install crews who don't know your home or your order
+          </div>
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-x"/></svg>
+            One-size-fits-all pricing with surprise fees at checkout
+          </div>
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-x"/></svg>
+            No follow-up after installation — you're on your own
+          </div>
+        </div>
+      </div>
+      <div class="why-col good reveal rr">
+        <div class="why-col-head">
+          <svg class="icon" style="fill:none;stroke:currentColor;width:20px;height:20px"><use href="#i-check"/></svg>
+          Window Stuff Inc.
+        </div>
+        <div class="why-items">
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            Hundreds of custom options — blinds, shades, shutters, drapery, and more
+          </div>
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            Expert design consultation with a team that truly listens to your vision
+          </div>
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            In-house installation team that measured your windows and knows every detail
+          </div>
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            Transparent, all-inclusive quotes — the price you see is the price you pay
+          </div>
+          <div class="why-item">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            Ongoing support and adjustments — we stand behind every installation
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap rl reveal">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80" alt="Interior design consultation" loading="lazy">
+        <div class="about-img-badge">
+          <span class="about-img-badge-num">20+</span>
+          <span class="about-img-badge-text">Years of Excellence</span>
+        </div>
+      </div>
+      <div class="rr reveal">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Rooted in Craftsmanship,<br>Driven by Design</h2>
+        <p style="font-size:.95rem;color:var(--mid);line-height:1.8;margin-bottom:.5rem">
+          Window Stuff Inc. was born from a simple belief: every window deserves a thoughtful solution. As a proud subsidiary of Liberatore Decorators, we combine decades of interior design expertise with a focused passion for window coverings.
+        </p>
+        <p style="font-size:.95rem;color:var(--mid);line-height:1.8;margin-bottom:1rem">
+          Founded by Federico Liberatore — a design professional trained at the prestigious Traphagen School of Design in New York City — we bring a designer's eye to every project, whether it's a single window or a full home transformation.
+        </p>
+        <div class="about-checks">
+          <div class="check-item">
+            <div class="check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg>
+            </div>
+            <span>Design-school trained expertise — we see what others miss</span>
+          </div>
+          <div class="check-item">
+            <div class="check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg>
+            </div>
+            <span>Residential and commercial clients served with equal care</span>
+          </div>
+          <div class="check-item">
+            <div class="check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg>
+            </div>
+            <span>Full-service approach: design, source, deliver, install</span>
+          </div>
+          <div class="check-item">
+            <div class="check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg>
+            </div>
+            <span>Part of the trusted Liberatore Decorators family of businesses</span>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary" style="background:var(--ink);color:var(--white)">
+          <svg class="icon" style="fill:none;stroke:currentColor"><use href="#i-arrow"/></svg>
+          Schedule a Consultation
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-inner">
+    <div class="section-label reveal">Client Reviews</div>
+    <h2 class="section-title reveal d1">What Our Clients Are Saying</h2>
+    <p class="section-sub reveal d2">We measure success by the satisfaction of the people who invite us into their homes and businesses.</p>
+    <div class="pullquote reveal">
+      "Working with Window Stuff Inc. was an absolute pleasure. Federico and his team truly understood what we were looking for — our living room feels like a completely different space now. The attention to detail was remarkable."
+    </div>
+    <p class="pullquote-attr reveal">— Sarah M., Residential Client</p>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+        <p class="review-text">"They came to our home, took measurements, walked us through every option, and never once felt pushy. The plantation shutters they installed look incredible."</p>
+        <div class="review-author">— James R.</div>
+      </div>
+      <div class="review-card reveal d1">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+        <p class="review-text">"I've used big-box stores before and the difference is night and day. These are true professionals. Everything was done exactly as promised, on time and within budget."</p>
+        <div class="review-author">— Maria T.</div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+        <p class="review-text">"We hired them for our office redesign — 14 windows — and they knocked it out of the park. Professional, efficient, and the finished look is exactly what we envisioned."</p>
+        <div class="review-author">— David K., Business Owner</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+        <p class="review-text">"The design consultation alone was worth calling. Federico helped me see possibilities I'd never considered. The final result was beyond my expectations."</p>
+        <div class="review-author">— Linda P.</div>
+      </div>
+      <div class="review-card reveal d1">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+        <p class="review-text">"Fast, clean, and genuinely nice people. They were in and out in a few hours and left no mess behind. The motorized shades work flawlessly."</p>
+        <div class="review-author">— Anthony G.</div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+        <p class="review-text">"I referred three neighbors after my experience. Every single one called me to say thank you. That says it all. These guys are the real deal."</p>
+        <div class="review-author">— Christine N.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-inner">
+    <div class="section-label reveal">Common Questions</div>
+    <h2 class="section-title reveal d1">Frequently Asked<br>Questions</h2>
+    <div class="faq-list reveal d1">
+      <div class="faq-item">
+        <button class="faq-question">
+          Do I need an appointment, or can I walk in?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><use href="#i-chevron-down"/></svg>
+        </button>
+        <div class="faq-answer">
+          We work by appointment to make sure every client gets our full, undivided attention. Appointments are easy to schedule and we're flexible with times, including evenings and weekends. For quick questions, feel free to call us anytime — we're always happy to chat.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What if I don't know what style I want?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><use href="#i-chevron-down"/></svg>
+        </button>
+        <div class="faq-answer">
+          That's exactly what our free consultation is for. Federico and our design team will walk through your space, understand your lifestyle and preferences, and present you with options that make sense for your home — no design background required on your end.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you work on commercial as well as residential properties?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><use href="#i-chevron-down"/></svg>
+        </button>
+        <div class="faq-answer">
+          Absolutely. We've completed projects ranging from single-family homes to large commercial office spaces. Commercial clients receive the same personalized service and attention to detail as our residential customers, with solutions designed for durability and professional aesthetics.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How long does a typical project take?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><use href="#i-chevron-down"/></svg>
+        </button>
+        <div class="faq-answer">
+          From initial consultation to final installation, most projects are completed within 2–4 weeks. Custom fabrication timelines vary depending on the product, but we'll give you a clear timeline upfront so you can plan accordingly. Rush options are available for time-sensitive projects.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Is the consultation and measurement truly free?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><use href="#i-chevron-down"/></svg>
+        </button>
+        <div class="faq-answer">
+          Yes, completely. We come to your home, take precise measurements, walk you through all available options, and provide a no-obligation quote — all at no cost. There's no pressure to commit on the spot, and no fee if you decide not to move forward.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What brands and materials do you carry?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><use href="#i-chevron-down"/></svg>
+        </button>
+        <div class="faq-answer">
+          We source from a wide network of premium manufacturers and can accommodate most budgets and styles. From entry-level options to luxury designer fabrics, we'll help you find the best fit for your needs. Ask about our current collections during your consultation.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you offer motorized or smart-home window coverings?
+          <svg class="faq-chevron" viewBox="0 0 24 24"><use href="#i-chevron-down"/></svg>
+        </button>
+        <div class="faq-answer">
+          Yes! We offer motorized blinds, shades, and drapery systems that can be controlled by remote, app, or integrated with popular smart home platforms. It's a popular upgrade for hard-to-reach windows and for clients who want the ultimate in convenience and light control.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="area" id="area">
+  <div class="section-inner">
+    <div class="section-label reveal">Where We Work</div>
+    <h2 class="section-title reveal d1">Service Area</h2>
+    <div class="area-grid">
+      <div class="area-card reveal rl">
+        <h3>We Come to You</h3>
+        <p>Our team travels throughout the region for free in-home consultations and professional installations.</p>
+        <div class="area-visual">
+          <div class="area-circle">
+            <div class="area-center-dot"></div>
+          </div>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-top:.75rem;font-weight:500">Your Area Coverage Zone</p>
+        </div>
+        <div class="area-grid-items">
+          <div class="area-item"><span class="area-item-name">Local Area</span><span class="area-item-time">5 min</span></div>
+          <div class="area-item"><span class="area-item-name">Surrounding Towns</span><span class="area-item-time">15 min</span></div>
+          <div class="area-item"><span class="area-item-name">Metro Region</span><span class="area-item-time">25 min</span></div>
+          <div class="area-item"><span class="area-item-name">Extended Area</span><span class="area-item-time">40 min</span></div>
+        </div>
+      </div>
+      <div class="area-desc rr reveal">
+        <div class="section-label">Coverage</div>
+        <h3 class="section-title">We Serve<br>Your Neighborhood</h3>
+        <p>Window Stuff Inc. proudly serves residential and commercial clients throughout the region. Whether you're a homeowner, property manager, or business owner, we'll come to you — no matter the project size.</p>
+        <div class="area-features">
+          <div class="area-feature">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            <span>Free in-home consultations available across the service area</span>
+          </div>
+          <div class="area-feature">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            <span>Single-room and whole-home projects accepted</span>
+          </div>
+          <div class="area-feature">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            <span>Commercial properties, offices, and hospitality spaces welcome</span>
+          </div>
+          <div class="area-feature">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            <span>Flexible scheduling including evenings and weekends</span>
+          </div>
+          <div class="area-feature">
+            <svg class="icon" style="fill:none;stroke:currentColor;width:16px;height:16px"><use href="#i-check"/></svg>
+            <span>Extended area service available — just ask</span>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary" style="margin-top:1.75rem;background:var(--gold);color:var(--white)">
+          <svg class="icon" style="fill:none;stroke:currentColor"><use href="#i-arrow"/></svg>
+          Check Your Area
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <h2 class="reveal">Ready to Transform Your Space?</h2>
+    <p class="reveal d1">Your free in-home consultation is one call away</p>
+    <a href="tel:+10000000000" class="cta-band-phone reveal d2">(000) 000-0000</a>
+    <p class="reveal d2" style="font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem">Mon–Sat: 9am–6pm &nbsp;·&nbsp; Sun: By Appointment &nbsp;·&nbsp; No Obligation</p>
+    <div class="cta-band-actions reveal d3">
+      <a href="tel:+10000000000" class="btn-primary">
+        <svg class="icon" style="fill:none;stroke:currentColor"><use href="#i-phone"/></svg>
+        Call Now
+      </a>
+      <a href="#contact" class="btn-outline">Schedule a Visit</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label reveal">Get in Touch</div>
+    <h2 class="section-title reveal d1">Start Your Project Today</h2>
+    <div class="contact-grid">
+      <div class="rl reveal">
+        <p style="font-size:.95rem;color:var(--mid);line-height:1.7;margin-bottom:2rem">We'd love to hear about your project. Fill out the form or give us a call — we'll get back to you within one business day to schedule your free consultation.</p>
+        <h3 style="font-size:1.4rem;margin-bottom:.5rem">Hours of Operation</h3>
+        <table class="hours-table">
+          <tr><td>Monday – Friday</td><td>9:00am – 6:00pm</td></tr>
+          <tr><td>Saturday</td><td>10:00am – 5:00pm</td></tr>
+          <tr><td>Sunday</td><td>By Appointment</td></tr>
+        </table>
+        <div style="margin-top:2rem;display:flex;flex-direction:column;gap:1rem">
+          <div style="display:flex;align-items:center;gap:.75rem;font-size:.9rem;color:var(--dark)">
+            <svg class="icon" style="fill:none;stroke:var(--gold3);width:18px;height:18px"><use href="#i-phone"/></svg>
+            <a href="tel:+10000000000" style="color:var(--gold3);font-weight:600">(000) 000-0000</a>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;font-size:.9rem;color:var(--dark)">
+            <svg class="icon" style="fill:none;stroke:var(--gold3);width:18px;height:18px"><use href="#i-mail"/></svg>
+            <a href="mailto:info@windowstuffinc.com" style="color:var(--gold3);font-weight:600">info@windowstuffinc.com</a>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;font-size:.9rem;color:var(--dark)">
+            <svg class="icon" style="fill:none;stroke:var(--gold3);width:18px;height:18px;margin-top:2px"><use href="#i-home"/></svg>
+            <span>A subsidiary of Liberatore Decorators</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form rr reveal">
+        <h3>Request a Free Consultation</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="(555) 123-4567">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="jane@example.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Project Type</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Custom Blinds</option>
+            <option>Shades &amp; Rollers</option>
+            <option>Drapery &amp; Curtains</option>
+            <option>Shutters</option>
+            <option>Interior Design</option>
+            <option>Multiple Services</option>
+            <option>Not Sure — Need Advice</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Property Type</label>
+          <select>
+            <option value="">Residential or Commercial?</option>
+            <option>Residential — Single Room</option>
+            <option>Residential — Whole Home</option>
+            <option>Commercial — Office</option>
+            <option>Commercial — Retail / Hospitality</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Us About Your Project</label>
+          <textarea placeholder="Describe the space, number of windows, any ideas you have — the more details the better!"></textarea>
+        </div>
+        <button class="form-submit">Request Free Consultation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Window Stuff Inc.</div>
+        <div class="footer-tagline">Custom window coverings and interior design services, proudly part of the Liberatore Decorators family.</div>
+        <div class="footer-subsidiary">A Subsidiary of Liberatore Decorators</div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services">Custom Blinds</a></li>
+          <li><a href="#services">Shades &amp; Rollers</a></li>
+          <li><a href="#services">Drapery &amp; Curtains</a></li>
+          <li><a href="#services">Shutters</a></li>
+          <li><a href="#services">Interior Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#gallery">Our Work</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#process">Our Process</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+10000000000">(000) 000-0000</a></li>
+          <li><a href="mailto:info@windowstuffinc.com">info@windowstuffinc.com</a></li>
+          <li><a href="#contact">Free Consultation</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Window Stuff Inc. All rights reserved.</span>
+      <span>Proudly serving our community | Part of Liberatore Decorators</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA BAR -->
+<div class="mobile-cta-bar">
+  <a href="tel:+10000000000" class="btn-primary" style="flex:1;justify-content:center;padding:.7rem 1rem">
+    <svg class="icon" style="fill:none;stroke:currentColor"><use href="#i-phone"/></svg>
+    Call Now
+  </a>
+  <a href="#contact" class="btn-primary" style="flex:1;justify-content:center;padding:.7rem 1rem;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.3)">
+    <svg class="icon" style="fill:none;stroke:currentColor"><use href="#i-mail"/></svg>
+    Get Quote
+  </a>
+</div>
+
+<script>
+  // ─── NAV scroll shadow
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ─── Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileClose = document.getElementById('mobile-close');
+  const mobileLinks = document.querySelectorAll('.mobile-menu-link');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  const closeMenu = () => {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  mobileClose.addEventListener('click', closeMenu);
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // ─── Intersection Observer for reveal animations
+  const revealEls = document.querySelectorAll('.reveal, .rl, .rr');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ─── Animated counters
+  const counters = document.querySelectorAll('[data-count]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = +entry.target.getAttribute('data-count');
+        const suffix = entry.target.textContent.includes('+') ? '+' : '';
+        let start = 0;
+        const duration = 1800;
+        const step = (timestamp) => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          entry.target.textContent = Math.floor(eased * target) + (progress === 1 ? '+' : '');
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => counterObserver.observe(el));
+
+  // ─── FAQ Accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
